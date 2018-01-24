@@ -166,6 +166,7 @@
         <module>modules/ballerina</module>
         <module>modules/tests/test-integration</module>
         <module>modules/ballerina-tools</module>
+        <module>modules/desktop-dist</module>
     </modules>
 
     <properties>
