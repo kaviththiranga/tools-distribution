@@ -60,7 +60,7 @@
                             <tasks>
                                 <copy todir="${basedir}/ballerina-home">
                                     <fileset dir="${project.build.directory}">
-                                        <include name="ballerina-tools-*/**/*.*"/>
+                                        <include name="ballerina-tools-*/**/*"/>
                                     </fileset>
                                     <cutdirsmapper dirs="1"/>
                                 </copy>
