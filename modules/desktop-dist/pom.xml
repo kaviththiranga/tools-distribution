@@ -64,6 +64,7 @@
                                     </fileset>
                                     <cutdirsmapper dirs="1"/>
                                 </copy>
+                                <chmod dir="${basedir}/ballerina-home/bin" perm="a+x" includes="*"/>
                             </tasks>
                         </configuration>
                     </execution>
