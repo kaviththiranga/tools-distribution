@@ -13,11 +13,10 @@
   },
   "build": {
     "appId": "org.ballerinalang.composer",
-    "asar": true,
+    "asar": false,
     "asarUnpack": [
-      "**/*.jar",
-      "conf/",
-      "resources/"
+      "ballerina-home",
+      "vs"
     ],
     "mac": {
       "category": "public.app-category.productivity",

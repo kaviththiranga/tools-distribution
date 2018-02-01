@@ -34,8 +34,7 @@ let win,
     serviceProcess,
     logger = new log('info'),
     appDir = app.getAppPath(),
-    logsDir = path.join(__dirname, '..', '..', 'logs'),
-    ballerinaHome = path.join(__dirname, 'bre');
+    logsDir = path.join(appDir, '..', '..', 'logs');
 
 function createLogger(){
     if (!fs.existsSync(logsDir)){
@@ -51,10 +50,13 @@ function createLogger(){
 
 function createService(){
     let errorWin;
-    serviceProcess = exec('./ballerina-home/bin/composer');
+    process.env.BAL_COMPOSER_HOME =  path.join(appDir, 'ballerina-home');
+    logger.debug('ballerina home set to ' + process.env.BAL_COMPOSER_HOME);
+    const execPath = path.join(appDir, 'ballerina-home', 'bin', 'composer');
+    serviceProcess = exec(execPath);
     logger.info('Verifying whether the backend services are started successfully');
     serviceProcess.stdout.on('data', function(data) {
-        console.log(data);
+        logger.info(data);
         // IMPORTANT: Wait till workspace-service is started to create window
         if (data.includes('Composer started successfully')) {
             logger.info('Backend services are properly started, starting composer GUI');
@@ -71,6 +73,7 @@ function createService(){
     });
 
     serviceProcess.stderr.on('data', function(data){
+        logger.error(data);
         let errorWindowLoaded = false,
             logsBuffer = [];
         if (!errorWin) {
