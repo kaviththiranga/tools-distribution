@@ -53,7 +53,8 @@ function createService(){
     process.env.BAL_COMPOSER_HOME =  path.join(appDir, 'ballerina-home');
     logger.debug('ballerina home set to ' + process.env.BAL_COMPOSER_HOME);
     const execPath = path.join(appDir, 'ballerina-home', 'bin', 'composer');
-    serviceProcess = exec(execPath);
+    const args = '--skipOpenInBrowser';
+    serviceProcess = exec(`${execPath} ${args}`);
     logger.info('Verifying whether the backend services are started successfully');
     serviceProcess.stdout.on('data', function(data) {
         logger.info(data);
